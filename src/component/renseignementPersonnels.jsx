@@ -13,6 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../css/index.css"
 
 const RenseignementPersonnels = () => {
+
   return (
     /*
         Composant des Renseignements personnels
@@ -59,4 +60,4 @@ const RenseignementPersonnels = () => {
   );
 };
 
-export { RenseignementPersonnels };
+export default RenseignementPersonnels;

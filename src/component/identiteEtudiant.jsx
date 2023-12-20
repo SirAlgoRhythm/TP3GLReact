@@ -1,5 +1,6 @@
 // importation react
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 // importation boostrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
@@ -20,7 +21,20 @@ import {
 // importation css
 import "../css/index.css"
 
-const IndentiteEtudiant = () => {
+const IdentiteEtudiant = () => {
+
+  const navigate = useNavigate();
+
+  const handleRetourClick = () => {
+    // Utiliser la fonction de navigation pour revenir en arrière
+    navigate(-1);
+  };
+
+  const handleSuivantClick = () => {
+    // Utiliser la fonction de navigation pour aller au prochain composant
+    navigate('/renseignementScolaire');
+  };
+
   return (
     /*
         Composant d'Indentite de l'étudiant
@@ -33,8 +47,7 @@ const IndentiteEtudiant = () => {
         code d’immigration, date d’obtention du statut de résident permanent 
         ou de réfugié et langue de correspondance.
     */
-
-    <Container controlId="IndentiteEtudiant">
+    <Container controlId="IdentiteEtudiant">
       <Row>
         <Col>{/**/}</Col>
         <Col xs={7}>
@@ -147,7 +160,7 @@ const IndentiteEtudiant = () => {
             </Row>
             {/*  */}
             <div className="text-center" controlId="DossierBoutons">
-              <Button variant="secondary">
+              <Button variant="secondary" onClick={handleRetourClick}>
                 <FontAwesomeIcon icon={faBackwardStep} /> Retour
               </Button>{" "}
               <Button variant="success">
@@ -156,7 +169,7 @@ const IndentiteEtudiant = () => {
               <Button variant="danger">
                 <FontAwesomeIcon icon={faX} /> Annulation
               </Button>{" "}
-              <Button variant="secondary">
+              <Button variant="secondary" onClick={handleSuivantClick}>
                 <FontAwesomeIcon icon={faForwardStep} /> Suivant 
               </Button>
             </div>
@@ -169,4 +182,4 @@ const IndentiteEtudiant = () => {
   );
 };
 
-export { IndentiteEtudiant };
+export default IdentiteEtudiant;

@@ -1,5 +1,6 @@
 // importation react
-import React from "react";
+import React, { useState } from "react";
+import PropTypes from 'prop-types';
 // importation boostrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
@@ -13,33 +14,53 @@ import { faBackwardStep, faUser, faCheck, faLock, faUserPlus } from "@fortawesom
 // importation css
 import "../css/index.css"
 
-const Identification = () => {
+
+async function postIdentification(credentials) {
+  return fetch('http://localhost:5252/api/etudiants/identification', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(credentials)
+  })
+    .then(data => data.json())
+ }
+
+const Identification = ({ setToken }) => {
+  const [codePerm, setCodePerm] = useState();
+  const [password, setPassword] = useState();
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const token = await postIdentification({
+      codePerm,
+      password
+    });
+    setToken(token);
+  }
+
     return (
-    /*
-        Composant d'identification
-    */
-  
       <Container controlId="Identification">
         <Row>
           <Col>{/**/}</Col>
           <Col xs={7}>
           <h1 className="text-center">Identification</h1>
-            <form action="url" method="post">
+            <form onSubmit={handleSubmit} >
               <Form.Group className="mb-3" controlId="CodePermanent">
                 <FontAwesomeIcon icon={faUser} />{" "}
                 <Form.Label>Code permanent :</Form.Label>
-                <Form.Control type="text" placeholder="Code permanent" />
+                <Form.Control type="text" onChange={e => setCodePerm(e.target.value)} placeholder="Code permanent" />
               </Form.Group>
               <Form.Group className="mb-3" controlId="MotDePasse">
                 <FontAwesomeIcon icon={faLock} />{" "}
                 <Form.Label>Mot de passe :</Form.Label>
-                <Form.Control type="text" placeholder="Mot de passe" />
+                <Form.Control type="password" onChange={e => setPassword(e.target.value)} placeholder="Mot de passe" />
               </Form.Group>
               <div className="text-center" controlId="ValidationIdentification">
               <Button variant="secondary" >
                   <FontAwesomeIcon icon={faBackwardStep} /> Retour
                 </Button>{" "} 
-                <Button variant="success" >
+                <Button type="submit" variant="success" >
                   <FontAwesomeIcon icon={faCheck} /> Validation 
                 </Button>
               </div>
@@ -57,4 +78,8 @@ const Identification = () => {
     );
   };
   
-  export { Identification };
+  export default Identification;
+
+  Identification.propTypes = {
+    setToken: PropTypes.func.isRequired
+  }

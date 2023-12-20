@@ -38,4 +38,4 @@ const PageDAcceuil = () => {
     );
   };
   
-  export { PageDAcceuil };
+  export default PageDAcceuil;

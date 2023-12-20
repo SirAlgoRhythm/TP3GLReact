@@ -1,5 +1,6 @@
 // importation react
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 // importation boostrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
@@ -19,6 +20,19 @@ import {
 import "../css/index.css"
 
 const RessourceFinanciere = () => {
+
+  const navigate = useNavigate();
+
+  const handleRetourClick = () => {
+    // Utiliser la fonction de navigation pour revenir en arrière
+    navigate(-1);
+  };
+
+  const handleSuivantClick = () => {
+    // Utiliser la fonction de navigation pour aller au prochain composant
+    navigate('/confirmation');
+  };
+
   return (
     /*
         Composant des Ressource financiere
@@ -53,7 +67,7 @@ const RessourceFinanciere = () => {
             </Row>
             {/*  */}
             <div className="text-center" controlId="DossierBoutons">
-              <Button variant="secondary">
+              <Button variant="secondary" onClick={handleRetourClick}>
                 <FontAwesomeIcon icon={faBackwardStep} /> Retour
               </Button>{" "}
               <Button variant="success">
@@ -62,7 +76,7 @@ const RessourceFinanciere = () => {
               <Button variant="danger">
                 <FontAwesomeIcon icon={faX} /> Annulation
               </Button>{" "}
-              <Button variant="secondary">
+              <Button variant="secondary" onClick={handleSuivantClick}>
                 <FontAwesomeIcon icon={faForwardStep} /> Suivant
               </Button>
             </div>
@@ -75,4 +89,4 @@ const RessourceFinanciere = () => {
   );
 };
 
-export { RessourceFinanciere };
+export default RessourceFinanciere;

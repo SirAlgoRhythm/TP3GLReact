@@ -55,4 +55,4 @@ const Calcul = () => {
   );
 };
 
-export { Calcul };
+export default Calcul;

@@ -56,4 +56,4 @@ const Montant = () => {
   );
 };
 
-export { Montant };
+export default Montant;

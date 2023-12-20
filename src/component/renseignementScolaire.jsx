@@ -1,5 +1,6 @@
 // importation react
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 // importation boostrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
@@ -19,6 +20,19 @@ import {
 import "../css/index.css"
 //test
 const RenseignementScolaire = () => {
+
+  const navigate = useNavigate();
+
+  const handleRetourClick = () => {
+    // Utiliser la fonction de navigation pour revenir en arrière
+    navigate(-1);
+  };
+
+  const handleSuivantClick = () => {
+    // Utiliser la fonction de navigation pour aller au prochain composant
+    navigate('/situationEtudiant');
+  };
+
   return (
     /*
         Composant des Renseignements scolaire
@@ -77,7 +91,7 @@ const RenseignementScolaire = () => {
             </Row>
             {/*  */}
             <div className="text-center" controlId="DossierBoutons">
-              <Button variant="secondary">
+              <Button variant="secondary" onClick={handleRetourClick}>
                 <FontAwesomeIcon icon={faBackwardStep} /> Retour
               </Button>{" "}
               <Button variant="success">
@@ -86,7 +100,7 @@ const RenseignementScolaire = () => {
               <Button variant="danger">
                 <FontAwesomeIcon icon={faX} /> Annulation
               </Button>{" "}
-              <Button variant="secondary">
+              <Button variant="secondary" onClick={handleSuivantClick}>
                 <FontAwesomeIcon icon={faForwardStep} /> Suivant
               </Button>
             </div>
@@ -99,4 +113,4 @@ const RenseignementScolaire = () => {
   );
 };
 
-export { RenseignementScolaire };
+export default RenseignementScolaire;

@@ -1,5 +1,6 @@
 // importation react
 import React from "react";
+import { useNavigate } from 'react-router-dom';
 // importation boostrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import Container from "react-bootstrap/Container";
@@ -19,6 +20,19 @@ import {
 import "../css/index.css";
 
 const Confirmation = () => {
+
+  const navigate = useNavigate();
+
+  const handleRetourClick = () => {
+    // Utiliser la fonction de navigation pour revenir en arrière
+    navigate(-1);
+  };
+
+  const handleSuivantClick = () => {
+    // Utiliser la fonction de navigation pour aller au prochain composant
+    navigate('/');
+  };
+
   return (
     /*
         Composant des Ressource financiere
@@ -81,7 +95,7 @@ const Confirmation = () => {
             </Row>
 
             <div className="text-center" controlId="DossierBoutons">
-              <Button variant="secondary">
+              <Button variant="secondary" onClick={handleRetourClick}>
                 <FontAwesomeIcon icon={faBackwardStep} /> Retour
               </Button>{" "}
               <Button variant="warning">
@@ -100,4 +114,4 @@ const Confirmation = () => {
   );
 };
 
-export { Confirmation };
+export default Confirmation;

@@ -75,4 +75,4 @@ const Inscription = () => {
   );
 };
 
-export { Inscription };
+export default Inscription;
